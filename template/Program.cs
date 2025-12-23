@@ -1,4 +1,3 @@
-using LinqToDB.Repository;
 using Opx.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +16,8 @@ var cs = new MySqlConnector.MySqlConnectionStringBuilder()
 	Port = 3306
 };
 
-builder.Services.UseWebApi()
-	.UseWebApiLinq2DbRepository(LinqToDB.ProviderName.MariaDB10MySqlConnector, cs.ConnectionString);
+builder.Services.UseOpxWebApi()
+	.UseOpxWebApiLinq2DbRepository(LinqToDB.ProviderName.MariaDB10MySqlConnector, cs.ConnectionString);
 
 var app = builder.Build();
 
@@ -34,6 +33,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-app.UseWebApiHandler();
+app.UseOpxWebApiHandler();
 
 app.Run();

@@ -10,7 +10,7 @@ namespace Opx.WebApi
 {
 	public static class SetupExtension
 	{
-		public static IServiceCollection UseWebApi(this IServiceCollection services)
+		public static IServiceCollection UseOpxWebApi(this IServiceCollection services)
 		{
 			services.Configure<ApiBehaviorOptions>(o =>
 			{
@@ -20,14 +20,14 @@ namespace Opx.WebApi
 			return services;
 		}
 
-		public static IServiceCollection UseWebApiLinq2DbRepository(this IServiceCollection services, string provider, string connectionString)
+		public static IServiceCollection UseOpxWebApiLinq2DbRepository(this IServiceCollection services, string provider, string connectionString)
 		{
 			services.UseRepositoryPattern(provider, connectionString);
 
 			return services;
 		}
 
-		public static void UseWebApiHandler(this WebApplication webApplication)
+		public static void UseOpxWebApiHandler(this WebApplication webApplication)
 		{
 			webApplication.Use(async (context, next) =>
 			{
@@ -36,7 +36,7 @@ namespace Opx.WebApi
 			});
 		}
 
-		public static IServiceCollection UseJwtAuth(this IServiceCollection services, JwtTokenValidationSetting validationSetting)
+		public static IServiceCollection UseOpxJwtAuth(this IServiceCollection services, JwtTokenValidationSetting validationSetting)
 		{
 			services.AddSingleton<IJwtTokenValidationSetting, JwtTokenValidationSetting>(_ => validationSetting);
 
