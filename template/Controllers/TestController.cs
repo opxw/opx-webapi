@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Opx.WebApi.Common;
 using Opx.WebApi.Handlers;
 using WebApiTemplate.Models;
@@ -9,6 +10,8 @@ namespace WebApiTemplate.Controllers
 	[ApiController]
 	[OpxApiExceptionHandler]
 	[OpxApiFilterHandler]
+	[Authorize]
+
 	public class TestController : OpxApiController
 	{
 		[HttpGet, Route("exception")]
@@ -19,6 +22,12 @@ namespace WebApiTemplate.Controllers
 
 		[HttpPost, Route("invalid-model")]
 		public async Task TestInvalidModel([FromBody] TestModel model)
+		{
+			await OkAsync("oke");
+		}
+
+		[HttpPost, Route("oke")]
+		public async Task TestOke()
 		{
 			await OkAsync("oke");
 		}

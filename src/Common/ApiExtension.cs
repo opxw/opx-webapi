@@ -32,7 +32,8 @@ namespace Opx.WebApi.Common
 					(int)HttpStatusCode.MethodNotAllowed => "HTTP Method not allowed",
 					(int)HttpStatusCode.ServiceUnavailable => "Unvailable",
 					(int)HttpStatusCode.NoContent => "No content",
-					(int)HttpStatusCode.InternalServerError => "Internal server error"
+					(int)HttpStatusCode.InternalServerError => "Internal server error",
+					(int)HttpStatusCode.UnsupportedMediaType => "Unsupported Media Type"
 				};
 
 				error.Message = message;

@@ -36,7 +36,15 @@ namespace Opx.WebApi
 			});
 		}
 
-		public static IServiceCollection UseOpxJwtAuth(this IServiceCollection services, JwtTokenValidationSetting validationSetting)
+		public static void UseOpxWebApiStatusCodePages(this WebApplication webApplication)
+		{
+			webApplication.UseStatusCodePages(async context =>
+			{
+				await webApplication.HandleUncatchedStatusCodeAsync(context.HttpContext, "StatusCodePages");
+			});
+		}
+
+		public static IServiceCollection UseOpxJwtBearerTokenAuth(this IServiceCollection services, JwtTokenValidationSetting validationSetting)
 		{
 			services.AddSingleton<IJwtTokenValidationSetting, JwtTokenValidationSetting>(_ => validationSetting);
 
@@ -45,13 +53,13 @@ namespace Opx.WebApi
 			{
 				ValidateIssuerSigningKey = true,
 				IssuerSigningKey = signingKey,
-				ValidateIssuer = true,
+				ValidateIssuer = string.IsNullOrWhiteSpace(validationSetting.Issuer) ? false : true,
 				ValidIssuer = validationSetting.Issuer,
-				ValidateAudience = true,
+				ValidateAudience = string.IsNullOrWhiteSpace(validationSetting.Audience) ? false : true,
 				ValidAudience = validationSetting.Audience,
 				ValidateLifetime = true,
 				ClockSkew = TimeSpan.Zero,
-				RequireExpirationTime = false,
+				RequireExpirationTime = false
 			};
 
 			services.AddAuthentication(o =>
@@ -64,6 +72,17 @@ namespace Opx.WebApi
 			{
 				o.RequireHttpsMetadata = false;
 				o.TokenValidationParameters = validationParameters;
+				o.Events = new JwtBearerEvents
+				{
+					OnAuthenticationFailed = context =>
+					{
+						return Task.CompletedTask;
+					},
+					OnTokenValidated = context =>
+					{
+						return Task.CompletedTask;
+					}
+				};
 			});
 
 			return services;

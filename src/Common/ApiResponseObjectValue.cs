@@ -8,7 +8,7 @@ namespace Opx.WebApi.Common
 		private bool disposedValue;
 
 		public async Task ShowErrorResponseAsync(HttpContext context, int? statusCode, dynamic errorValue,
-	double? elapsedTime = null)
+			double? elapsedTime = null)
 		{
 			var originStatusCode = statusCode != null ? statusCode : context.Response.StatusCode;
 			var result = new ApiResult()
