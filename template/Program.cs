@@ -10,17 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-var cs = new MySqlConnector.MySqlConnectionStringBuilder()
-{
-	Database = "mydb",
-	Server = "127.0.0.1",
-	UserID = "root",
-	Password = "",
-	Port = 3306
-};
-
-builder.Services.UseOpxWebApi()
-	.UseOpxWebApiLinq2DbRepository(LinqToDB.ProviderName.MariaDB10MySqlConnector, cs.ConnectionString);
+builder.Services.UseOpxWebApi();
 
 builder.Services.UseOpxJwtBearerTokenAuth(new Opx.WebApi.Jwt.JwtTokenValidationSetting()
 {

@@ -1,5 +1,4 @@
-﻿using LinqToDB.Repository;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Opx.WebApi.Common;
@@ -16,13 +15,6 @@ namespace Opx.WebApi
 			{
 				o.SuppressModelStateInvalidFilter = true;
 			});
-
-			return services;
-		}
-
-		public static IServiceCollection UseOpxWebApiLinq2DbRepository(this IServiceCollection services, string provider, string connectionString)
-		{
-			services.UseRepositoryPattern(provider, connectionString);
 
 			return services;
 		}
