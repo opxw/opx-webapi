@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Library</OutputType>
@@ -10,7 +10,7 @@
     <Company>opx</Company>
     <Copyright>Copyright © 2025 opx</Copyright>
 	  <IsPackable>true</IsPackable>
-	  <Version>1.0.6</Version>
+	  <Version>1.0.7</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -22,14 +22,14 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.9" />
 	</ItemGroup>
 	
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="7.4.0" />
-    <PackageReference Include="Mapster.Async" Version="2.0.1" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.15.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
+    <PackageReference Include="Mapster" Version="10.0.7" />
+    <PackageReference Include="Mapster.Async" Version="10.0.7" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.19.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.1" />
   </ItemGroup>
 
 </Project>
